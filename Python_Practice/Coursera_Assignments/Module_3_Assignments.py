@@ -105,6 +105,7 @@ for tag in tags:
     tot = tot + int(tag.contents[0])
 print(tot)
 '''
+
 '''
 In this assignment you will write a Python program that expands on http://www.py4e.com/code3/urllinks.py. 
 The program will use urllib to read the HTML from the data files below, extract the href= vaues from the anchor tags, 
@@ -155,29 +156,6 @@ position = input('enter the position value: ')
 count = 1
 url_findmethod(url,position,limit, count)
 '''
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-
-
-
-
-
-
-
-
-
-
 
 '''
 Extracting Data from XML
