@@ -421,9 +421,14 @@ servicour1 = 'http://maps.googleapis.com/maps/api/gecode/json?'
 
 while True:
     address = input('Enter Location: ')
+    api_key = input('Enter the API key: ')
     if len(address) < 1: break
     
-    url = service1 + urllib.parse.urlencode({'address':address})
+    parms = dict()
+    parms['address'] = address
+    parms['key'] = api_key 
+    
+    url = service1 + urllib.parse.urlencode(parms)
     
     print('Retrieving', url)
     
@@ -451,7 +456,7 @@ while True:
 #13.8 Securing API requests
 
     #Twitter API's connectivity to retrieve data 
-'''    
+  
 import urllib.request, urllib.parse, urllib.error
 import oauth
 import json
@@ -490,5 +495,5 @@ while True:
         print(u['screen_name'])
         s = u['status']['text']
         print(' ', s[:50])
- '''   
+    
     

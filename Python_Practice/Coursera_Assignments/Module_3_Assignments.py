@@ -4,6 +4,9 @@ Created on May 3, 2020
 @author: KOKULAKRISHNAN
 '''
 '''
+from itertools import count
+'''
+'''
 
 
 Finding Numbers in a Haystack
@@ -102,6 +105,79 @@ for tag in tags:
     tot = tot + int(tag.contents[0])
 print(tot)
 '''
+'''
+In this assignment you will write a Python program that expands on http://www.py4e.com/code3/urllinks.py. 
+The program will use urllib to read the HTML from the data files below, extract the href= vaues from the anchor tags, 
+scan for a tag that is in a particular position relative to the first name in the list, follow that link and 
+repeat the process a number of times and report the last name you find.
+
+We provide two files for this assignment. One is a sample file where we give you the name for your testing and 
+the other is the actual data you need to process for the assignment
+
+Sample problem: Start at http://py4e-data.dr-chuck.net/known_by_Fikret.html
+Find the link at position 3 (the first name is 1). Follow that link. Repeat this process 4 times. 
+The answer is the last name that you retrieve.
+Sequence of names: Fikret Montgomery Mhairade Butchi Anayah
+Last name in sequence: Anayah
+Actual problem: Start at: http://py4e-data.dr-chuck.net/known_by_Tobie.html
+Find the link at position 18 (the first name is 1). Follow that link. Repeat this process 7 times. 
+The answer is the last name that you retrieve.
+Hint: The first character of the name of the last page that you will load is: H
+Strategy
+The web pages tweak the height between the links and hide the page after a few seconds to make 
+it difficult for you to do the assignment without writing a Python program. But frankly with a little effort and 
+patience you can overcome these attempts to make it a little harder to complete the assignment without writing a Python program. But that is not the point. The point is to write a clever Python program to solve the program.
+'''
+'''
+import urllib.request, urllib.parse, urllib.error
+from bs4 import BeautifulSoup
+import re
+
+def url_findmethod (url,position,limit, count):
+    urlhtmldata = urllib.request.urlopen(url).read().decode()
+    soup = BeautifulSoup(urlhtmldata, 'html.parser')
+    tags = soup('a')
+    if(count<limit):
+        count = count + 1
+        splited_url = str(tags[position-1]).split('"')
+        string_splitted_url = str(splited_url[1])
+        url_findmethod(string_splitted_url, position, limit, count)
+    else:
+        onlyname = str(tags[position-1])
+        name = re.split(r'[<,>]', onlyname)
+        print(name[2])
+    
+    
+    
+url = input('Enter the url: ')
+limit = input('enter the limit value: ')
+position = input('enter the position value: ')
+count = 1
+url_findmethod(url,position,limit, count)
+'''
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+
+
+
+
+
+
+
+
+
 
 '''
 Extracting Data from XML
@@ -157,4 +233,74 @@ for items in listtags:
 print(tot)
 '''
 
+'''
+In this assignment you will write a Python program somewhat similar to http://www.py4e.com/code3/json2.py. 
+The program will prompt for a URL, read the JSON data from that URL using urllib and 
+then parse and extract the comment counts from the JSON data, compute the sum of the numbers in the file and 
+enter the sum below:
+We provide two files for this assignment. One is a sample file where we give you the sum for your testing and 
+the other is the actual data you need to process for the assignment.
+
+Sample data: http://py4e-data.dr-chuck.net/comments_42.json (Sum=2553)
+Actual data: http://py4e-data.dr-chuck.net/comments_472987.json (Sum ends with 73)
+You do not need to save these files to your folder since your program will read the data directly from the URL. 
+Note: Each student will have a distinct data url for the assignment - so only use your own data url for analysis.
+'''
+'''
+import urllib.request, urllib.parse, urllib.error
+import json
+tot = 0
+url = 'http://py4e-data.dr-chuck.net/comments_472987.json'
+data = urllib.request.urlopen(url).read().decode()
+passingjson = json.loads(data)
+for items in passingjson['comments']:
+    tot = tot + int(items['count'])
+print(tot)
+'''
+'''
+Calling a JSON API
+
+In this assignment you will write a Python program somewhat similar to http://www.py4e.com/code3/geojson.py. 
+The program will prompt for a location, contact a web service and retrieve JSON for the web service and parse that data, 
+and retrieve the first place_id from the JSON. A place ID is a textual identifier that uniquely identifies a 
+place as within Google Maps.
+API End Points
+
+To complete this assignment, you should use this API endpoint that has a static subset of the Google Data:
+
+http://py4e-data.dr-chuck.net/json?
+This API uses the same parameter (address) as the Google API. This API also has no rate limit so you can test as often
+ as you like. If you visit the URL with no parameters, you get "No address..." response.
+To call the API, you need to include a key= parameter and provide the address that you are requesting as the 
+address= parameter that is properly URL encoded using the urllib.parse.urlencode() function as 
+shown in http://www.py4e.com/code3/geojson.py
+
+Make sure to check that your code is using the API endpoint is as shown above. 
+You will get different results from the geojson and json endpoints so make sure you are using the same end 
+point as this autograder is using.
+
+Test Data / Sample Execution
+
+You can test to see if your program is working with a location of "South Federal University" which will have 
+a place_id of "ChIJ9e_QQm0sDogRhUPatldEFxw".
+'''
+'''
+import urllib.request,urllib.parse, urllib.error
+import json
+
+serviceurl = 'http://py4e-data.dr-chuck.net/json?'
+
+address = input('enter the address: ')
+key = input('enter the key: ')
+parms = dict()
+parms['address'] = address
+parms['key'] = key
+
+url = serviceurl + urllib.parse.urlencode(parms)
+
+jsondata = urllib.request.urlopen(url).read().decode()
+#print(jsondata)
+passingjson = json.loads(jsondata)
+print(passingjson['results'][0]['place_id'])
+'''
 
