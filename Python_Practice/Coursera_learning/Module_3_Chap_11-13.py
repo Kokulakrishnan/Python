@@ -357,7 +357,7 @@ input = ''''''<stuff>
 stuff = ET.fromstring(input)
 lst = stuff.findall('users/user')
 print(lst)
-print('user count:', len(lst))
+#print('user count:', len(lst))
 for item in lst:
     print('Name:', item.find('name').text)
     print('ID:', item.find('id').text)
@@ -456,7 +456,7 @@ while True:
 #13.8 Securing API requests
 
     #Twitter API's connectivity to retrieve data 
-  
+'''  
 import urllib.request, urllib.parse, urllib.error
 import oauth
 import json
@@ -496,4 +496,4 @@ while True:
         s = u['status']['text']
         print(' ', s[:50])
     
-    
+'''   
