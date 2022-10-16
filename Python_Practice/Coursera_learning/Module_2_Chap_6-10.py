@@ -202,14 +202,14 @@ print(lent(thing))
 """
 
 #finding which day the email was sent from a file
-"""
+
 fhand = open('D:\office Drive\Capgemini\learnings\Python Traning\handson\Dataset\mbox-short.txt')
 for line in fhand:
     line = line.rstrip()
-    if not line.startwith('From '): continue
+    if not line.startswith('From '): continue
     words = line.split()
     print(words[2])
-"""   
+ 
 
 #double split pattern
 """
@@ -280,15 +280,17 @@ not there is a common that there is a method called
 
 """
 counts = dict()
-names = ['csev', 'cwen', 'csev', 'zqian', 'cwen']
+#names = ['csev', 'cwen', 'csev', 'zqian', 'cwen']
+names = ['csev']
 for name in names:
-    if name in counts:
+    if name not in counts:
         x = counts[name]
     else:
         x = 0
 print(counts)
 
 x = counts.get(name, 0)
+print(x)
 """
 
 #simplified counting with get()

@@ -291,7 +291,7 @@ If they seem to have done the assignment give them full credit. Feel free to mak
 Please keep your comments positive and useful. 
 If you do not take grading seriously, the instructors may delete your response and you will lose points.
 '''
-'''
+
 #geodump.py
 import sqlite3
 import json
@@ -307,6 +307,7 @@ fhand.write("myData = [\n")
 count = 0
 for row in cur :
     data = str(row[1].decode())
+    print(data)
     try: js = json.loads(str(data))
     except: continue
 
@@ -332,7 +333,7 @@ cur.close()
 fhand.close()
 print(count, "records written to where.js")
 print("Open where.html to view the data in a browser")
-'''
+
 
 '''
 #geload.py

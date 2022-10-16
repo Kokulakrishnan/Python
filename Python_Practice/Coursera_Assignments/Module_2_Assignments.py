@@ -72,7 +72,7 @@ Hint: make sure not to include the lines that start with 'From:'.
 
 You can download the sample data at http://www.py4e.com/code3/mbox-short.txt
 """
-"""
+'''
 fname = input("Enter file name: ")
 if len(fname) < 1 : fname = "mbox-short.txt"
 fh = open(fname)
@@ -87,8 +87,8 @@ for reqword in fh:
     emaillist.append(email[1])
 
 print("There were", count, "lines in the file with From as the first word")
-"""
 
+'''
 '''
 9.4 Write a program to read through the mbox-short.txt and figure out who has sent the greatest number of mail messages. 
 The program looks for 'From ' lines and takes the second word of those lines as the person who sent the mail. 
@@ -105,8 +105,8 @@ for line in handle:
     if not line.startswith('From:'):
         continue
     word = line.split()
-    emaildict[word[1]] = emaildict.get(word[1], 0) + 1
-
+    emaildict[word] = emaildict.get(word, 0) + 1 
+print(emaildict)
 bigcount = None
 bigword = None
 for (k,v) in emaildict.items():
@@ -114,6 +114,8 @@ for (k,v) in emaildict.items():
         bigcount = v
         bigword = k
 print(bigword, bigcount)
+
+
 
 
 '''

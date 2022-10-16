@@ -202,7 +202,7 @@ Retrieved 4189 characters
 Count: 50
 Sum: 2...
 '''
-
+'''
 import urllib.request,urllib.parse,urllib.error
 import xml.etree.ElementTree as ET
 tot = 0
@@ -215,7 +215,7 @@ print(listtags)
 for items in listtags:
     tot = tot + int(items.find('count').text)
 print(tot)
-
+'''
 
 '''
 In this assignment you will write a Python program somewhat similar to http://www.py4e.com/code3/json2.py. 
@@ -268,7 +268,7 @@ Test Data / Sample Execution
 You can test to see if your program is working with a location of "South Federal University" which will have 
 a place_id of "ChIJ9e_QQm0sDogRhUPatldEFxw".
 '''
-'''
+
 import urllib.request,urllib.parse, urllib.error
 import json
 
@@ -281,10 +281,11 @@ parms['address'] = address
 parms['key'] = key
 
 url = serviceurl + urllib.parse.urlencode(parms)
+print(url)
 
 jsondata = urllib.request.urlopen(url).read().decode()
 #print(jsondata)
 passingjson = json.loads(jsondata)
 print(passingjson['results'][0]['place_id'])
-'''
+
 

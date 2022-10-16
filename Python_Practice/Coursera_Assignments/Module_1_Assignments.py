@@ -93,7 +93,7 @@ You should use input to read a string and float() to convert the string to a num
 about error checking the user input unless you want to - you can assume the user types numbers properly. 
 Do not name your variable sum or use the sum() function.
 """
-
+"""
 def computepay(h,r):
     if(h>40):
         pay = ((40*r) + (h-40)*r*1.5)
@@ -107,7 +107,7 @@ rate = input("Enter rate:")
 r = float(rate)
 p = computepay(h,r)
 print("Pay",p)
-
+"""
 
 """
 5.2 Write a program that repeatedly prompts a user for integer numbers until the user enters 'done'. 
@@ -137,3 +137,17 @@ while True:
 print("Maximum is", largest)
 print("Minimum is", smallest)
 """
+
+num_list = list()
+while True:
+    num = input("Enter a number:")
+    try:
+        if num == "done": continue
+        num_list.append(int(num))
+    except:
+        print("Invalid Number")
+        
+sort_list = sorted(num_list)
+print("Maximum is", sort_list[len(sort_list)-1])
+print("Minimum is", sort_list[0])
+

@@ -142,9 +142,9 @@ lin = 'From stephen.marquard@uct.ac.za Sat Jan 5 09:14:16 2008'
 y = re.findall('@\S+', lin)
 print(y)
 '''
-
-#Spam confidence
 '''
+#Spam confidence
+
 import re
 hand = open('D:\office Drive\Capgemini\learnings\Python Traning\handson\Dataset\mbox-short.txt')
 numlist = list()
@@ -160,6 +160,17 @@ print(numlist)
 print('Maximum:', max(numlist))
 '''
 
+import re
+file = open('D:\office Drive\Capgemini\learnings\Python Traning\handson\Dataset\mbox-short.txt')
+numlist = list()
+for line in file:
+    stuff = re.findall('^X-DSPAM-Confidence: (0.\S+)',line) #(\S+0\S+)
+    #print(stuff)
+    if len(stuff)!= 1 : continue
+    num = float(stuff[0])
+    print(num)
+    #numlist.append(num)
+#print(numlist)
 #Escape character
 
 '''
@@ -413,7 +424,7 @@ i took some notes in the notepad++ read there
 here i develop a code in python to connect the google map
 API's to retrieve some data from google maps
 '''
-'''
+
 import urllib.request, urllib.parse, urllib.error
 import json
 
@@ -451,7 +462,7 @@ while True:
     print('lat', lat, 'lng', lng)
     location = js['results'][0]['formatted_address']
     print(location)
-'''
+
 
 #13.8 Securing API requests
 
